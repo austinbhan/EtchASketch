@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 
 <style>
-
 #container {
     font-size: small;
     display: grid;
-    width: 700px;
-    height: 700px;
+    width: 900px;
+    height: 900px;
 }
-
 #header {
-    width: 700px;
-    height: 700px;
+    width: 900px;
+    height: 900px;
     border-width: 2px;
     border-color: black;
     border-style: solid;
@@ -20,46 +18,38 @@
 
 <body>
 <button id = "xButton">How many rows and columns?</button>
-<button onclick = "location.reload();">Refresh this Page</button>
-<button id = "clearColors">Clear colors</button>
-<button id = "randomColor">Sketch with Random Colors!</button>
+<button onclick = "location.reload();">Refresh this Page (Clear Colors)</button>
 <h1 id = "header"></h1>
-
 </body>
 
 <script>
-
 let header = document.getElementById("header");
 let container = document.createElement("div");
 container.id = "container";
+header.appendChild(container);
 
-xButton.addEventListener("click", function(e) {
-    
+xButton.addEventListener("click", function(e) {    
+    container.innerHTML = " ";
     let  grid = prompt("How many rows and columns?");
     container.style.gridTemplateRows = `repeat(${grid}, auto`;
     container.style.gridTemplateColumns = `repeat(${grid}, auto`;
-    header.appendChild(container);
     let total = grid * grid;
 
-    if (total > 625) {
-        alert("Your grid request is above 25x25, try again");
+    if (total > 2500) {
+        alert("Your grid request is above 50x50, try again");
     }
-
     else {
         for (i = 0; i < total; i++) {
+            
             let divElements = document.createElement("div");
-            divElements.style.outline = "1px solid black";
+            divElements.style.border = "1px solid black";
             divElements.onmouseover = function() {mouseOver()};
                 function mouseOver() {
-                divElements.style.backgroundColor = "red";
+                divElements.style.backgroundColor = "black";
                 }
-                
             container.appendChild(divElements);
         };
     }
 })
 
 </script>
-Without looking at the code, my best guess is you haven't 
-cleared the previous grid (a ton of students have issues with this). 
-I would google how to remove elements from the DOM.
